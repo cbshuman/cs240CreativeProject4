@@ -1,3 +1,168 @@
 <html>
+<head>
+	<title>Bugger</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+	<div class = "header">
+	<h1>BUGGER<h1>
+	<h2>- Bugtracking Program - </h2>
+	</div>
+
+	<div class = "navigationbar" id = "navigationBar">
+		<ul>
+			<li v-for="item in barItems">
+				<a v-bind:href="item.url">{{item.text}}</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class = "list" id="bug">
+		<h3>Bug #16698</h3>
+		<hr>
+		<form>
+			<div class = "bugLayout">
+
+				<div class = "bugInfo">
+
+					<h4>Naming:</h4>
+					<hr>
+					<div class = "bugForm">
+						<div class = "bugFormInput">
+							Bug Nickname:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Enter a nickname for the bug">
+						</div>
+					</div>
+
+					<h4>Contact Info:</h4>
+					<hr>
+					<div class = "bugForm">
+						<div class = "bugFormInput">
+							Reporter Contact:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Contact that reported the bug">
+						</div>
+						<div class = "bugFormInput">
+							Bug Primary Contact:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Primary engineer assigned to fix">
+						</div>
+						<div class = "bugFormInput">
+							Bug Secondary Contact:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Secondary engineer assigned to fix">
+						</div>
+						<div class = "bugFormInput">
+							Bug QA Contact:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Primary QA tester">
+						</div>
+					</div>
+				</div>
+
+				<div class = "bugInfo">
+				<h4>Project Information:</h4>
+				<hr>
+					<div class = "bugForm">
+						<div class = "bugFormInput">
+						Project:
+						</div>
+						<div class = "bugFormInputA">
+							<select name="Project">
+							  <option value="Caverns of the Ushwa">Caverns of the Ushwa</option>
+							  <option value="Strategy Game">Strategy Game</option>
+							  <option value="Vagrant Dragons Class Library">Vagrant Dragons Class Library</option>
+							</select>
+						</div>
+						<div class = "bugFormInput">	
+							Version Found In:
+						</div>
+						<div class="version">
+							<input> .
+							<input> .
+							<input> .
+							<input>
+						</div>
+					</div>
+				</div>
+
+				<div class = "bugInfo">
+				<h4>Bug Status:</h4>
+				<hr>
+					<div class = "bugForm">
+						<div class = "bugFormInput">
+							Created On:
+						</div>
+						<div class = "bugFormInputA">
+							<i>1/1/2001</i>
+						</div>
+						<div class = "bugFormInput">
+							Last Modified on:
+						</div>
+						<div class = "bugFormInputA">
+							<i>1/1/2001</i>
+						</div>
+						<div class = "bugFormInput">
+							Bug Status:
+						</div>
+						<div class = "bugFormInputA">
+							<select name="Status">
+							  <option value="New">New</option>
+							  <option value="Can't Reproduce">Can't Reproduce</option>
+							  <option value="On Hold">On Hold</option>
+							  <option value="Fix in Progress">Fix in Progress</option>
+							  <option value="Fixed">Fixed</option>
+							</select>
+						</div>
+						<div class = "bugFormInput">
+							Current Priority:
+						</div>
+						<div class = "bugFormInputA">
+							<select name="Status">
+							  <option value="Low">Low</option>
+							  <option value="Medium">Medium</option>
+							  <option value="High">High</option>
+							  <option value="Imediate">Imediate</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class = "bugInfo">
+					<h4>Bug Discription:</h4>
+					<hr>
+					<textarea name="message" placeholder="Describe the bug"></textarea>
+				</div>
+
+			</div>
+		<button>Save Changes</button>
+		</form>
+		<div class = "comments">
+			<h4>Comments</h4>
+			<hr>
+			<div class = "bugInfo">
+				<textarea name="message" placeholder="Enter New Comment"></textarea>
+				<br><button>Save Comment</button>
+			</div>
+			<div class="comment">
+				I really hope this gets fixed
+				<br><b>- Dave</b> - <i>1/1/2001</i>
+			</div>
+		</div>
+	</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
+  <script src="/javascript/navigationbar.js"></script>
+  <script src="/javascript/bug.js"></script>
+  <script src="/javascript/bugApp.js"></script>
+</body>
 
 </html>

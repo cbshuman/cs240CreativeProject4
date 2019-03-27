@@ -1,0 +1,149 @@
+<html>
+<head>
+	<title>Bugger</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+	<div class = "header">
+		<h1>BUGGER<h1>
+		<h2>- Bugtracking Program - </h2>
+	</div>
+
+	<div class = "navigationbar" id = "navigationBar">
+		<ul>
+			<li v-for="item in barItems">
+				<a v-bind:href="item.url">{{item.text}}</a>
+			</li>
+		</ul>
+	</div>
+
+
+	<div class = "list" id="bug">
+		<h3>User Preferences</h3>
+		<hr>
+		<form>
+			<div class = "bugLayout">
+
+				<div class = "bugInfo">
+					<h4>Naming:</h4>
+					<hr>
+					<div class = "bugForm">
+						<div class = "bugFormInput">
+							Email/Username:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Email Address">
+						</div>
+						<div class = "bugFormInput">
+							First Name:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Real first name">
+						</div>
+						<div class = "bugFormInput">
+							Last Name:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Real last name">
+						</div>
+						<div class = "bugFormInput">
+							Alias:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Name to appear in comments">
+						</div>
+
+					</div>
+				</div>
+
+				<div class = "bugInfo">
+					<h4>Contact Info:</h4>
+					<hr>
+					<div class = "bugForm">
+						<div class = "bugFormInput">
+							Address:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Address">
+						</div>
+						<div class = "bugFormInput">
+							Phone Number:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Phone Number">
+						</div>
+						<div class = "bugFormInput">
+							Secondary Email:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Secondary email">
+						</div>
+					</div>
+				</div>
+
+				<div class = "bugInfo">
+				<h4>User Data:</h4>
+				<hr>
+					<div class = "bugForm">
+
+						<div class = "bugFormInput">
+							UserID:
+						</div>
+						<div class = "bugFormInputA">
+							<i>#1238970298712</i>
+						</div>
+						<div class = "bugFormInput">
+							Permissions:
+						</div>
+						<div class = "bugFormInputA">
+							<i>admin</i>,<i>basic</i>
+						</div>
+
+					</div>
+				</div>
+
+				<div class = "bugInfo">
+				<h4>Change Password:</h4>
+				<hr>
+					<div class = "bugForm">
+
+						<div class = "bugFormInput">
+							Current Password:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Current Password">
+						</div>
+						<div class = "bugFormInput">
+							New Password:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="New Password">
+						</div>
+						<div class = "bugFormInput">
+							Confirm New Password:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="New Password">
+						</div>
+						<div class = "bugFormInput">
+							Confirm Change Password:
+						</div>
+						<div class = "bugFormInputA">
+							<button>Change Password</button>
+						</div>
+				
+					</div>
+				</div>
+
+			</div>
+		<button>Save Changes</button>
+		</form>
+	</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
+  <script src="/javascript/navigationbar.js"></script>
+</body>
+
+</html>
