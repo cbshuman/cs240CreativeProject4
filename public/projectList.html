@@ -18,19 +18,47 @@
 		</ul>
 	</div>
 
-	<div class = "list">
-	<h3>Current Projects</h3>
-	<hr>
-	<ul>
-		<li><a href =""> Caverns of the Ushwa</a></li>
-		<li><a href =""> Strategy Game </a></li>
-	</ul>
-	<button>Create New Project</button>
+	<div id = "projectList">
+		<div class = "list">
+			<h3>Current Projects</h3>
+			<hr>
+			<ul>
+				<li v-for="item in projects">
+					<a href ="">{{item.projectName}}</a>
+					<ul>
+						<li>ProjectID: {{item._id}}</li>
+						<li>Bugs : 10 </li>
+						<li>{{item.projectDisc}}</li>
+					</ul>
+				</li>
+			</ul>
+			<button @click="ToggleForm">Create New Project</button>
+			</div>
+
+			<transition v-if="createProjectMenu" name="modal">
+			<div class="modal-mask">
+				<div class="modal-wrapper">
+					<div class="modal-container">
+						<h3>Create New Project</h3>
+						<hr>
+						<p v-if="error" class="error">{{error}}</p>
+						New Project Name: <input v-model="newProjectname">
+						<br>
+						<h4>Project Discription:</h4>
+						<textarea name="message" placeholder="Describe the project" v-model="newProjectDisc"></textarea>
+						<br>
+						<button @click="CreateProject" type="button">Create Project</button>
+						<button @click="ToggleForm" type="button" class="close">Close</button>
+					</div>
+				</div>
+			</transition>
+		</div>
 	</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
   <script src="/javascript/navigationbar.js"></script>
+  <script src="/javascript/projectListApp.js"></script>
 </body>
 
 </html>

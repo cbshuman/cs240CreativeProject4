@@ -98,6 +98,43 @@ h4
 	margin:0px;
 	}
 
+
+.modal-mask
+	{
+	position: fixed;
+	z-index: 9998;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .5);
+	display: table;
+	transition: opacity .3s ease;
+	}
+
+.modal-wrapper
+	{
+	display: table-cell;
+	vertical-align: middle;
+	}
+
+.modal-container
+	{
+	width: 20em;
+	margin: 0px auto;
+	padding: 1em;
+	background-color: #DEE5E5;
+	border: 5px solid #082D0F;
+	border-radius:5px;
+	transition: all .3s ease;
+	}
+
+.modal-container textarea
+	{
+	width:95%;
+	height:10em;
+	}
+
 .navigationbar
 	{
 	margin:0px;
