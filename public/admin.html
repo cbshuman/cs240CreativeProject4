@@ -1,0 +1,130 @@
+<html>
+<head>
+	<title>Bugger</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+	<div class = "header">
+		<h1>BUGGER<h1>
+		<h2>- Bugtracking Program - </h2>
+	</div>
+
+	<div class = "navigationbar" id = "navigationBar">
+		<ul>
+			<li v-for="item in barItems">
+				<a v-bind:href="item.url">{{item.text}}</a>
+			</li>
+			<li>
+			<a @click="LogOut()" href="/">Logout</a>
+			</li>
+		</ul>
+	</div>
+
+	<div>
+		<div class = "list"  id="adminUser">
+			<h3>User Administration</h3>
+			<hr>
+			<div class = "bugLayout">
+
+			<form @submit.prevent="CreateNewUser()">
+				<div class = "bugInfo">
+					<h4>Add User:</h4>
+					<hr>
+					<div class = "bugForm">
+							<div class = "bugFormInput">
+								Email/Username:
+							</div>
+							<div class = "bugFormInput">
+								<input placeholder="Email Address"  v-model="newUsername">
+							</div>
+							<div class = "bugFormInput">
+								Password:
+							</div>
+							<div class = "bugFormInput">
+								<input placeholder="Password" v-model="newPassword">
+							</div>
+							<div class = "bugFormInput">
+								First Name:
+							</div>
+							<div class = "bugFormInput">
+								<input placeholder="Real first name" v-model="newFirst">
+							</div>
+							<div class = "bugFormInput">
+								Last Name:
+							</div>
+							<div class = "bugFormInput">
+								<input placeholder="Real last name" v-model="newLast">
+							</div>
+							<div class = "bugFormInput">
+								<button type="submit" type="button">Add</button>
+							</div>
+					</div>
+				</div>
+			</form>
+
+				<div class = "bugInfo">
+					<h4>Remove User</h4>
+					<hr>
+					<div class = "bugForm">
+						<div class = "bugFormInput">
+							Email/Username:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Email Address">
+						</div>
+						<div class = "bugFormInput">
+							Admin Password:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Phone Number">
+						</div>
+						<div class = "bugFormInput">
+							Confirm Admin Password:
+						</div>
+						<div class = "bugFormInput">
+							<input placeholder="Secondary email">
+						</div>
+						<div class = "bugFormInput">
+							<button>Remove</button>
+						</div>
+					</div>
+				</div>
+
+				<div class = "bugInfo">
+					<h4>User Permissions:</h4>
+					<hr>
+					<div class = "bugForm">
+
+						<div class = "bugFormInput">
+							Email/Username:
+						</div>
+						<div class = "bugFormInputA">
+							<input placeholder="Email Address">
+						</div>
+						<div class = "bugFormInput">
+							Security Group:
+						</div>
+						<div class = "bugFormInputA">
+							<input placeholder="Security Group">
+						</div>
+						<div class = "bugFormInput">
+						<button>Add</button>
+						</div>
+						<div class = "bugFormInputA">
+						<button>Remove</button>
+						</div>
+
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
+<script src="/javascript/navigationbar.js"></script>
+<script src="/javascript/adminUser.js"></script>
+</body>
+
+</html>

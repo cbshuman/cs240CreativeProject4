@@ -15,13 +15,16 @@
 			<li v-for="item in barItems">
 				<a v-bind:href="item.url">{{item.text}}</a>
 			</li>
+			<li>
+			<a @click="LogOut()" href="/">Logout</a>
+			</li>
 		</ul>
 	</div>
 
 	<div class = "list" id="bugApp">
 		<h3>Bug #{{bugID}}</h3>
 		<hr>
-		<form  @submit.prevent="UpdateBug()">
+		<form @submit.prevent="UpdateBug()">
 			<div class = "bugLayout">
 
 				<div class = "bugInfo">
@@ -144,12 +147,15 @@
 			</div>
 		<button  type="submit" type="button">Save Changes</button>
 		</form>
+
 		<div class = "comments">
 			<h4>Comments</h4>
 			<hr>
 			<div class = "bugInfo">
-				<textarea name="message" placeholder="Enter New Comment"></textarea>
-				<br><button>Save Comment</button>
+				<form @submit.prevent="SendComment()">
+					<textarea v-model="newComment" placeholder="Enter New Comment"></textarea>
+					<br><button>Save Comment</button>
+				</form type="submit" type="button">
 			</div>
 			<div class="comment" v-for="comment in bug.comments"> {{comment}} </div>
 		</div>

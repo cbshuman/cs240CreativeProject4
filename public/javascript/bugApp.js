@@ -3,15 +3,18 @@ var app = new Vue(
 	el: '#bugApp',
 	data:
 		{
+		newComment: '',
 		bugID : '',
 		projects: [],
 		bug: new bug(),
+		user: '',
 		},
 	created()
 		{
 		this.GetBugID();
 		this.GetProjects();
 		this.GetBug();
+		this.GetUser();
 		},
 	methods:
 		{
@@ -20,6 +23,18 @@ var app = new Vue(
 			let url = window.location.href;
 
 			this.bugID = url.slice(url.indexOf('#')+1,url.length);
+			},
+		async GetUser()
+			{
+			try
+				{
+				let response = await axios.get("/api/users");
+				this.user = response.data;
+				}
+			catch (error)
+				{
+				window.location.replace("/");
+				}
 			},
 		async GetProjects()
 			{
@@ -53,11 +68,17 @@ var app = new Vue(
 				bugDiscrip: this.bug.discription,
 				});
 			},
+		async SendComment()
+			{
+			let response = await axios.put("/api/bugs/comment/" + this.bugID ,{ comment: this.newComment, usersName: this.user.firstName + " " + this.user.lastName });
+			this.newComment = '';
+			this.GetBug();
+			},
 		async GetBug()
 			{
 			try
 				{
-				let response = await axios.get("http://localhost:3000/api/bugs/" + this.bugID ,{ id: this.bugID, });
+				let response = await axios.get("/api/bugs/" + this.bugID ,{ id: this.bugID, });
 				let responseData = response.data;		
 
 				this.bug.bugNumber = responseData._id;		

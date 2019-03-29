@@ -5,23 +5,24 @@ var app = new Vue(
 		{
 		username: '',
 		password: '',
+		error: '',
 		},
 	created()
 		{
 		},
 	methods:
 		{
-		async logIn()
+		async LogIn()
 			{
 			try
 				{
-				//let response = await axios.get("/api/items");
-				//this.items = response.data;
-				return true;
+				let response = await axios.post("/api/users/login", { username: this.username, password: this.password });
+				this.user = response.data;
+				window.location.replace("/projectList.html");
 				}
 			catch (error)
 				{
-				console.log(error);
+				this.error = error;
 				}
 			},
 		}

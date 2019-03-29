@@ -13,10 +13,11 @@
 	<div class = "login" id="login">
 		<h3>Login</h3>
 		<hr>
-		<form>
+		<p v-if="error" class="error">{{error}}</p>
+		<form  @submit.prevent="LogIn()">
 			<p>Username: <input v-model="username" placeholder="Enter your username/email"></p>
 			<p>Password: <input v-model="password" placeholder="Enter your passoword"></p>
-			<button> Login </button>
+			<button  type="submit" type="button"> Login </button>
 		</form>
 	</div>
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const express = require("express");
 const router = express.Router();
+const auth = require("./auth.js");
 
 //Project Schema
 const bugSchema = new mongoose.Schema(
@@ -77,7 +78,7 @@ router.get('/:id', async (req, res) =>
 
 router.put('/:id', async (req, res) =>
 	{
-	/console.log("Looking for bug #" + req.params.id);
+	//console.log("Looking for bug #" + req.params.id);
 	try
 		{
 		let bug = await Bug.findOne({ _id: req.params.id	});
@@ -98,6 +99,30 @@ router.put('/:id', async (req, res) =>
 		bug.ver4 = req.body.ver4;
 		bug.bugDiscrip = req.body.bugDiscrip;
 
+		bug.save();
+		res.sendStatus(200);
+		}
+	catch (error)
+		{
+		console.log(error);
+		res.sendStatus(500);
+		}
+	});
+
+router.put('/comment/:id', auth.verifyToken, async (req, res) =>
+	{
+	//console.log("Looking for bug #" + req.params.id);
+	try
+		{
+		let bug = await Bug.findOne({ _id: req.params.id	});
+		
+		if(!req.body.comment)
+			{
+			res.sendStatus(500);
+			}
+
+		let comment =  req.body.comment + "\n\n- " + req.body.usersName;
+		bug.comments.push(comment);
 		bug.save();
 		res.sendStatus(200);
 		}
