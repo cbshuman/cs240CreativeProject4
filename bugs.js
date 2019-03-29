@@ -121,7 +121,30 @@ router.put('/comment/:id', auth.verifyToken, async (req, res) =>
 			res.sendStatus(500);
 			}
 
-		let comment =  req.body.comment + "\n\n- " + req.body.usersName;
+		let usersName = req.body.alias;
+
+		if(usersName === '')
+			{
+			//console.log(req.body.first + "/" + req.body.last);
+			if(req.body.first === req.body.last)
+				{
+				usersName = req.body.first;
+				}
+			else
+				{
+				usersName = req.body.first + " " + req.body.last;
+				}
+			}
+
+		//console.log(req.body.first + "/" + req.body.last);
+
+		if(usersName === '')
+			{
+			res.sendStatus(576);
+			return;
+			}
+
+		let comment =  { comment: req.body.comment, usersName: usersName, date: new Date(Date.now()).toLocaleString() };
 		bug.comments.push(comment);
 		bug.save();
 		res.sendStatus(200);

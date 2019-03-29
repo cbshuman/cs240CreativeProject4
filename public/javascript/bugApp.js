@@ -70,7 +70,13 @@ var app = new Vue(
 			},
 		async SendComment()
 			{
-			let response = await axios.put("/api/bugs/comment/" + this.bugID ,{ comment: this.newComment, usersName: this.user.firstName + " " + this.user.lastName });
+			let response = await axios.put("/api/bugs/comment/" + this.bugID ,
+				{
+				comment: this.newComment,
+				first: this.user.firstName,
+				last: this.user.lastName,
+				alias: this.user.alias
+				});
 			this.newComment = '';
 			this.GetBug();
 			},

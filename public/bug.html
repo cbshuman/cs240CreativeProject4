@@ -157,7 +157,7 @@
 					<br><button>Save Comment</button>
 				</form type="submit" type="button">
 			</div>
-			<div class="comment" v-for="comment in bug.comments"> {{comment}} </div>
+			<div class="comment" v-for="comment in bug.comments"> <h4>- {{comment.usersName}} on {{comment.date}}: </h4> {{comment.comment}} </div>
 		</div>
 	</div>
 

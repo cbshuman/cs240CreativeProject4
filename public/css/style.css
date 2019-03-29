@@ -130,10 +130,16 @@ tr a:hover
 .comment
 	{
   	background-color: #9DC5BB;
-	border: 5px solid #082D0F;
+	border: 5px solid #5E807F;
 	border-radius:5px;
 	width:50%;
 	padding:1em;
+	margin:.5em;
+	}
+
+.comment h4
+	{
+	margin:0.25em;
 	}
 
 .header

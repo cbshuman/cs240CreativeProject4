@@ -22,10 +22,10 @@
 	</div>
 
 
-	<div class = "list" id="bug">
+	<div class = "list" id="userApp">
 		<h3>User Preferences</h3>
 		<hr>
-		<form>
+		<form @submit.prevent="UpdateUser()">
 			<div class = "bugLayout">
 
 				<div class = "bugInfo">
@@ -36,25 +36,25 @@
 							Email/Username:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Email Address">
+							<input placeholder="Email Address" v-model="user.username">
 						</div>
 						<div class = "bugFormInput">
 							First Name:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Real first name">
+							<input placeholder="Real first name" v-model="user.firstName">
 						</div>
 						<div class = "bugFormInput">
 							Last Name:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Real last name">
+							<input placeholder="Real last name" v-model="user.lastName">
 						</div>
 						<div class = "bugFormInput">
 							Alias:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Name to appear in comments">
+							<input placeholder="Name to appear in comments" v-model="user.alias">
 						</div>
 					</div>
 				</div>
@@ -67,19 +67,19 @@
 							Address:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Address">
+							<input placeholder="Address" v-model="user.address">
 						</div>
 						<div class = "bugFormInput">
 							Phone Number:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Phone Number">
+							<input placeholder="Phone Number" v-model="user.phone">
 						</div>
 						<div class = "bugFormInput">
 							Secondary Email:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Secondary email">
+							<input placeholder="Secondary email" v-model="user.secondaryEmail">
 						</div>
 					</div>
 				</div>
@@ -93,13 +93,13 @@
 							UserID:
 						</div>
 						<div class = "bugFormInputA">
-							<i>#1238970298712</i>
+							<i>{{user._id}}</i>
 						</div>
 						<div class = "bugFormInput">
 							Permissions:
 						</div>
 						<div class = "bugFormInputA">
-							<i>admin</i>,<i>basic</i>
+							<i v-for="permission in user.permissions">{{permission}}</i>
 						</div>
 
 					</div>
@@ -114,19 +114,19 @@
 							Current Password:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Current Password">
+							<input placeholder="Current Password" type="password">
 						</div>
 						<div class = "bugFormInput">
 							New Password:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="New Password">
+							<input placeholder="New Password" type="password">
 						</div>
 						<div class = "bugFormInput">
 							Confirm New Password:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="New Password">
+							<input placeholder="New Password" type="password">
 						</div>
 						<div class = "bugFormInput">
 							Confirm Change Password:
@@ -139,13 +139,14 @@
 				</div>
 
 			</div>
-		<button>Save Changes</button>
+		<button type="submit" type="button">Save Changes</button>
 		</form>
 	</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
   <script src="/javascript/navigationbar.js"></script>
+  <script src="/javascript/userApp.js"></script>
 </body>
 
 </html>

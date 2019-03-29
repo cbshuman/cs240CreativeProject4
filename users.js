@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
 	lastName: String,
 	alias: String,
 	address: String,
+	phone: String,
 	secondaryEmail: String,
 	permissions: [],
 	tokens: [],
@@ -104,10 +105,47 @@ router.post('/', async (req, res) =>
 			password: req.body.password,
 			alias: '',
 			address: '',
+			phone: '',
 			secondaryEmail: '',
 			permissions: [],
 			tokens: [],
 			});
+		await user.save();
+		return res.send(user);
+		} 
+	catch (error)
+		{
+		console.log(error);
+		return res.sendStatus(500);
+		}
+	});
+
+router.put('/update/:id', async (req, res) =>
+	{
+	//console.log("Creating user: " + req.body.username);
+	if (!req.body.username || !req.body.lastName)
+		{
+		return res.status(400).send({message: "username, real name(first and last), and password are required"});
+		}
+
+	try
+		{
+		//  check to see if username already exists
+		let user = await User.findOne({ username: req.body.username });
+		
+	if (!user)
+			{
+			return res.status(403).send({message: "Can't find user"});
+			}
+
+		user.username = req.body.username;
+		user.firstName = req.body.firstName;
+		user.lastName = req.body.lastName;
+		user.alias = req.body.alias;
+		user.address = req.body.address;
+		user.phone = req.body.phone;
+		user.secondaryEmail = req.body.secondaryEmail;
+
 		await user.save();
 		return res.send(user);
 		} 
@@ -157,7 +195,7 @@ router.get('/', auth.verifyToken, async (req, res) =>
 		return res.status(403).send({error: "must login"});
 		}
 
-	console.log("Looking for a cookie for : " + user.username);
+	//console.log("Looking for a cookie for : " + user.username);
 	return res.send(user);
 	});
 

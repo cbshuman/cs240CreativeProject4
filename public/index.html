@@ -16,13 +16,10 @@
 		<p v-if="error" class="error">{{error}}</p>
 		<form  @submit.prevent="LogIn()">
 			<p>Username: <input v-model="username" placeholder="Enter your username/email"></p>
-			<p>Password: <input v-model="password" placeholder="Enter your passoword"></p>
+			<p>Password: <input v-model="password" type="password" placeholder="Enter your passoword"></p>
 			<button  type="submit" type="button"> Login </button>
 		</form>
 	</div>
-
-	<a href ="/projectList.html">test project list</a>
-	<a href ="/bug.html">test bug</a>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>

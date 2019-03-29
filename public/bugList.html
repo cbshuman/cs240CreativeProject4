@@ -27,15 +27,15 @@
 			<hr>
 			<table>
 				<tr>
-					<th class ="bugCell">Bug ID</th>
-					<th class ="bugCell">Bug Nickname</th>
-					<th class ="bugCell">Project</th>
-					<th class ="bugCell">Version</th>
-					<th class ="bugCell">Priority</th>
-					<th class ="bugCell">Status</th>
-					<th class ="bugCell">Discription</th>
+					<th class ="bugCell" @click="ChangeSortMethod('ID')">Bug ID</th>
+					<th class ="bugCell" @click="ChangeSortMethod('NICKNAME')">Bug Nickname</th>
+					<th class ="bugCell" @click="ChangeSortMethod('PROJECT')">Project</th>
+					<th class ="bugCell" @click="ChangeSortMethod('VER')">Version</th>
+					<th class ="bugCell" @click="ChangeSortMethod('PRIORITY')">Priority</th>
+					<th class ="bugCell" @click="ChangeSortMethod('STATUS')">Status</th>
+					<th class ="bugCell" @click="ChangeSortMethod('DISCRIPT')">Discription</th>
 				</tr>
-				<tr v-for="bug in bugs" :class="GetTableRow()">
+				<tr v-for="bug in bugList" :class="GetTableRow()">
 					<td class ="bugCell"><a v-bind:href = "'/bug.html#' + bug._id">{{bug._id}}</a></td>
 					<td class ="bugCell">{{bug.bugNickname}}</td>
 					<td class ="bugCell">{{bug.project}}</td>
