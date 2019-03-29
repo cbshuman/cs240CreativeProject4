@@ -41,6 +41,53 @@ h4
 	margin-bottom:0px;
 	}
 
+table
+	{
+	width:100%;
+	border: 3px solid #082D0F;
+	border-radius:5px;
+	}
+
+th
+	{
+	color:#DEE5E5;
+	height:2em;
+	font-size:1.5em;
+	background-color: #5E807F;
+	}
+
+td
+	{
+	padding:.5em;
+	}
+
+tr:hover
+	{
+	background-color: #17B890;
+	}
+
+tr a
+	{
+	font-size:1em;
+	color:#082D0F;
+	}
+
+tr a:hover
+	{
+	font-size:1em;
+	color:#DEE5E5;
+	}
+
+.bugTableRowA
+	{
+	background-color: #9DC5BB;
+	}
+
+.bugTableRowB
+	{
+	background-color: #DEE5E5;
+	}
+
 .bugLayout
 	{
   	display: grid;
@@ -120,7 +167,8 @@ h4
 
 .modal-container
 	{
-	width: 20em;
+	min-width: 20em;
+	max-width: 50%;
 	margin: 0px auto;
 	padding: 1em;
 	background-color: #DEE5E5;

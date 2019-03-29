@@ -18,10 +18,10 @@
 		</ul>
 	</div>
 
-	<div class = "list" id="bug">
-		<h3>Bug #16698</h3>
+	<div class = "list" id="bugApp">
+		<h3>Bug #{{bugID}}</h3>
 		<hr>
-		<form>
+		<form  @submit.prevent="UpdateBug()">
 			<div class = "bugLayout">
 
 				<div class = "bugInfo">
@@ -33,7 +33,7 @@
 							Bug Nickname:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Enter a nickname for the bug">
+							<input placeholder="Enter a nickname for the bug" v-model="bug.bugNickname">
 						</div>
 					</div>
 
@@ -44,25 +44,25 @@
 							Reporter Contact:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Contact that reported the bug">
+							<input placeholder="Contact that reported the bug" v-model="bug.emailReport">
 						</div>
 						<div class = "bugFormInput">
 							Bug Primary Contact:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Primary engineer assigned to fix">
+							<input placeholder="Primary engineer assigned to fix" v-model="bug.emailPrimary">
 						</div>
 						<div class = "bugFormInput">
 							Bug Secondary Contact:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Secondary engineer assigned to fix">
+							<input placeholder="Secondary engineer assigned to fix" v-model="bug.emailSecondary">
 						</div>
 						<div class = "bugFormInput">
 							Bug QA Contact:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Primary QA tester">
+							<input placeholder="Primary QA tester" v-model="bug.emailQA">
 						</div>
 					</div>
 				</div>
@@ -75,20 +75,20 @@
 						Project:
 						</div>
 						<div class = "bugFormInputA">
-							<select name="Project">
-							  <option value="Caverns of the Ushwa">Caverns of the Ushwa</option>
-							  <option value="Strategy Game">Strategy Game</option>
-							  <option value="Vagrant Dragons Class Library">Vagrant Dragons Class Library</option>
+							<select v-model="bug.project">
+								<option v-for="project in projects" v-bind:value="project.projectName">
+								{{project.projectName}}
+								</option>
 							</select>
 						</div>
 						<div class = "bugFormInput">	
 							Version Found In:
 						</div>
 						<div class="version">
-							<input> .
-							<input> .
-							<input> .
-							<input>
+							<input v-model="bug.ver1"> .
+							<input v-model="bug.ver2"> .
+							<input v-model="bug.ver3"> .
+							<input v-model="bug.ver4">
 						</div>
 					</div>
 				</div>
@@ -101,19 +101,19 @@
 							Created On:
 						</div>
 						<div class = "bugFormInputA">
-							<i>1/1/2001</i>
+							<i>{{bug.created}}</i>
 						</div>
 						<div class = "bugFormInput">
 							Last Modified on:
 						</div>
 						<div class = "bugFormInputA">
-							<i>1/1/2001</i>
+							<i>{{bug.modified}}</i>
 						</div>
 						<div class = "bugFormInput">
 							Bug Status:
 						</div>
 						<div class = "bugFormInputA">
-							<select name="Status">
+							<select v-model="bug.status">
 							  <option value="New">New</option>
 							  <option value="Can't Reproduce">Can't Reproduce</option>
 							  <option value="On Hold">On Hold</option>
@@ -125,7 +125,7 @@
 							Current Priority:
 						</div>
 						<div class = "bugFormInputA">
-							<select name="Status">
+							<select v-model="bug.priority">
 							  <option value="Low">Low</option>
 							  <option value="Medium">Medium</option>
 							  <option value="High">High</option>
@@ -138,11 +138,11 @@
 				<div class = "bugInfo">
 					<h4>Bug Discription:</h4>
 					<hr>
-					<textarea name="message" placeholder="Describe the bug"></textarea>
+					<textarea name="message" placeholder="Describe the bug" v-model="bug.discription"></textarea>
 				</div>
 
 			</div>
-		<button>Save Changes</button>
+		<button  type="submit" type="button">Save Changes</button>
 		</form>
 		<div class = "comments">
 			<h4>Comments</h4>
@@ -151,10 +151,7 @@
 				<textarea name="message" placeholder="Enter New Comment"></textarea>
 				<br><button>Save Comment</button>
 			</div>
-			<div class="comment">
-				I really hope this gets fixed
-				<br><b>- Dave</b> - <i>1/1/2001</i>
-			</div>
+			<div class="comment" v-for="comment in bug.comments"> {{comment}} </div>
 		</div>
 	</div>
 

@@ -26,8 +26,18 @@ var app = new Vue(
 			{
 			try
 				{
-				let response = await axios.get("http://localhost:3000/api/projects");
-				this.projects = response.data;
+				let response = await axios.get("/api/projects");
+				let projectData = response.data;
+
+				for(let i = 0; i < projectData.length; i++)
+					{
+					let element = projectData[i];
+					let bugs = await axios.get("/api/bugs/project/" + element.projectName);
+					element.bugs = bugs.data;
+					projectData[i] = element;
+					}
+
+				this.projects = projectData;
 				return true;
 				}
 			catch (error)
@@ -37,16 +47,23 @@ var app = new Vue(
 			},
 		async CreateProject()
 			{
-			try
+			if(this.newProjectname != '' && this.newProjectDisc != '')
 				{
-				let response = await axios.post("http://localhost:3000/api/projects", { projectName: this.newProjectname, projectDisc: this.newProjectDisc});
-				this.GetProjects();
-				this.ToggleForm();
-				return true;
+				try
+					{
+					let response = await axios.post("http://localhost:3000/api/projects", { projectName: this.newProjectname, projectDisc: this.newProjectDisc});
+					this.GetProjects();
+					this.ToggleForm();
+					return true;
+					}
+				catch (error)
+					{
+					console.log(error);
+					}
 				}
-			catch (error)
+			else
 				{
-				console.log(error);
+				this.error = 'You need to enter a name and discription to create a new project!';
 				}
 			},
 		}

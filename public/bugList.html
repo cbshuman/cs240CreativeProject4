@@ -18,16 +18,84 @@
 		</ul>
 	</div>
 
-	<div class = "list">
-	<h3>Current Bugs</h3>
-	<hr>
+	<div id = "bugList">
+		<div class = "list">
+			<h3>Current Bugs</h3>
+			<hr>
+			<table>
+				<tr>
+					<th class ="bugCell">Bug ID</th>
+					<th class ="bugCell">Bug Nickname</th>
+					<th class ="bugCell">Project</th>
+					<th class ="bugCell">Version</th>
+					<th class ="bugCell">Priority</th>
+					<th class ="bugCell">Status</th>
+					<th class ="bugCell">Discription</th>
+				</tr>
+				<tr v-for="bug in bugs" :class="GetTableRow()">
+					<td class ="bugCell"><a v-bind:href = "'/bug.html#' + bug._id">{{bug._id}}</a></td>
+					<td class ="bugCell">{{bug.bugNickname}}</td>
+					<td class ="bugCell">{{bug.project}}</td>
+					<td class ="bugCell">{{bug.ver1}}.{{bug.ver2}}.{{bug.ver3}}.{{bug.ver4}}</td>
+					<td class ="bugCell">{{bug.priority}}</td>
+					<td class ="bugCell">{{bug.status}}</td>
+					<td class ="bugCell">{{bug.bugDiscrip}}</td>
+				</tr>
+			</table>
 
-	<button>Create New Bug</button>
+			<br>
+			<button @click="ToggleForm">Create New Bug</button>
+		</div>
+
+		<transition v-if="createBugMenu" name="modal">
+			<div class="modal-mask">
+				<div class="modal-wrapper">
+					<div class="modal-container">
+						<h3>Report a New Bug</h3>
+						<hr>
+						<p v-if="error" class="error">{{error}}</p>
+						<form @submit.prevent="CreateBug">
+							New Bug Nickname: <input v-model="newbug.bugNickname">
+							*Reporter Email: <input v-model="newbug.emailReport">
+							<br>*Version Found In: <div class="version">
+								<input v-model="newbug.ver1"> .
+								<input v-model="newbug.ver2"> .
+								<input v-model="newbug.ver3"> .
+								<input v-model="newbug.ver4">
+							</div>
+							*Project:
+							<select v-model="newbug.project">
+								<option v-for="project in projects" v-bind:value="project.projectName">
+								{{project.projectName}}
+								</option>
+							</select>
+							<br>*Priority:
+							<select name="Status" v-model="newbug.priority">
+							  <option value="Low">Low</option>
+							  <option value="Medium">Medium</option>
+							  <option value="High">High</option>
+							  <option value="Imediate">Imediate</option>
+							</select>
+							<br>
+							<br>
+							*Bug Discription:
+							<br><textarea name="message" placeholder="Describe bug using as many details as possible" v-model="newbug.bugDiscrip"></textarea>
+							<br>
+							<button  type="submit" type="button">Create Bug</button>
+							<button @click="ToggleForm" type="button" class="close">Close</button>
+						</form>
+					* Required field
+					</div>
+				</div>
+			</transition>
+		</div>
 	</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
   <script src="/javascript/navigationbar.js"></script>
+  <script src="/javascript/bug.js"></script>
+  <script src="/javascript/bugListApp.js"></script>
 </body>
 
 </html>

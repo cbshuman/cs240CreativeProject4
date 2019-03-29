@@ -23,32 +23,34 @@
 			<h3>Current Projects</h3>
 			<hr>
 			<ul>
-				<li v-for="item in projects">
-					<a href ="">{{item.projectName}}</a>
+				<li v-for="project in projects">
+					<a href ="">{{project.projectName}}</a>
 					<ul>
-						<li>ProjectID: {{item._id}}</li>
-						<li>Bugs : 10 </li>
-						<li>{{item.projectDisc}}</li>
+						<li>ProjectID: {{project._id}}</li>
+						<li>Bugs : {{project.bugs.length}} </li>
+						<li>{{project.projectDisc}}</li>
 					</ul>
 				</li>
 			</ul>
 			<button @click="ToggleForm">Create New Project</button>
-			</div>
+		</div>
 
-			<transition v-if="createProjectMenu" name="modal">
+		<transition v-if="createProjectMenu" name="modal">
 			<div class="modal-mask">
 				<div class="modal-wrapper">
 					<div class="modal-container">
 						<h3>Create New Project</h3>
 						<hr>
 						<p v-if="error" class="error">{{error}}</p>
-						New Project Name: <input v-model="newProjectname">
-						<br>
-						<h4>Project Discription:</h4>
-						<textarea name="message" placeholder="Describe the project" v-model="newProjectDisc"></textarea>
-						<br>
-						<button @click="CreateProject" type="button">Create Project</button>
-						<button @click="ToggleForm" type="button" class="close">Close</button>
+						<form @submit.prevent="CreateProject">
+							New Project Name: <input v-model="newProjectname">
+							<br>
+							<h4>Project Discription:</h4>
+							<textarea name="message" placeholder="Describe the project" v-model="newProjectDisc"></textarea>
+							<br>
+							<button  type="submit" type="button">Create Project</button>
+							<button @click="ToggleForm" type="button" class="close">Close</button>
+						</form>
 					</div>
 				</div>
 			</transition>
