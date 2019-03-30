@@ -68,5 +68,4 @@ const removeOldTokens = (tokens) =>
   		});
 	}
 
-module.exports = { generateToken: generateToken, verifyToken: verifyToken, removeOldTokens: removeOldTokens,
-};
+module.exports = { generateToken: generateToken, verifyToken: verifyToken, removeOldTokens: removeOldTokens,};

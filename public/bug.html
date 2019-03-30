@@ -88,10 +88,19 @@
 							Version Found In:
 						</div>
 						<div class="version">
-							<input v-model="bug.ver1"> .
-							<input v-model="bug.ver2"> .
-							<input v-model="bug.ver3"> .
-							<input v-model="bug.ver4">
+							<input v-model="bug.ver1" type="number"> .
+							<input v-model="bug.ver2" type="number"> .
+							<input v-model="bug.ver3" type="number"> .
+							<input v-model="bug.ver4" type="number">
+						</div>
+						<div class = "bugFormInput">	
+							Version Fixed In:
+						</div>
+						<div class="version">
+							<input v-model="bug.fixVer1" type="number"> .
+							<input v-model="bug.fixVer2" type="number"> .
+							<input v-model="bug.fixVer3" type="number"> .
+							<input v-model="bug.fixVer4" type="number">
 						</div>
 					</div>
 				</div>
@@ -145,7 +154,7 @@
 				</div>
 
 			</div>
-		<button  type="submit" type="button">Save Changes</button>
+		<button  type="submit" type="button">Save Changes</button> <p v-if="error" class="error">{{error}}</p>
 		</form>
 
 		<div class = "comments">

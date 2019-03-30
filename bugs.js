@@ -20,6 +20,10 @@ const bugSchema = new mongoose.Schema(
 	ver2: String,
 	ver3: String,
 	ver4: String,
+	fixVer1: String,
+	fixVer2: String,
+	fixVer3: String,
+	fixVer4: String,
 	bugDiscrip: String,
 	comments: [],
 	});
@@ -32,7 +36,7 @@ bugSchema.set('toJSON', { virtuals: true });
 
 const Bug = mongoose.model('Bugs', bugSchema);
 
-router.get('/', async (req, res) =>
+router.get('/', auth.verifyToken, async (req, res) =>
 	{
 	try
 		{
@@ -46,7 +50,7 @@ router.get('/', async (req, res) =>
 		}
 	});
 
-router.get('/project/:projectName', async (req, res) =>
+router.get('/project/:projectName', auth.verifyToken, async (req, res) =>
 	{
 	try
 		{
@@ -61,7 +65,7 @@ router.get('/project/:projectName', async (req, res) =>
 		}
 	});
 
-router.get('/:id', async (req, res) =>
+router.get('/:id', auth.verifyToken, async (req, res) =>
 	{
 	try
 		{
@@ -76,7 +80,7 @@ router.get('/:id', async (req, res) =>
 		}
 	});
 
-router.put('/:id', async (req, res) =>
+router.put('/:id', auth.verifyToken, async (req, res) =>
 	{
 	//console.log("Looking for bug #" + req.params.id);
 	try
@@ -97,6 +101,10 @@ router.put('/:id', async (req, res) =>
 		bug.ver2 = req.body.ver2;
 		bug.ver3 = req.body.ver3;
 		bug.ver4 = req.body.ver4;
+		bug.fixVer1 = req.body.fixVer1;
+		bug.fixVer2 = req.body.fixVer2;
+		bug.fixVer3 = req.body.fixVer3;
+		bug.fixVer4 = req.body.fixVer4;
 		bug.bugDiscrip = req.body.bugDiscrip;
 
 		bug.save();
@@ -157,7 +165,7 @@ router.put('/comment/:id', auth.verifyToken, async (req, res) =>
 	});
 
 
-router.post('/', async (req, res) =>
+router.post('/', auth.verifyToken, async (req, res) =>
 	{
 	//console.log("Version" + req.body.ver1 + "." + req.body.ver2);
 	const bug = new Bug(
@@ -176,6 +184,10 @@ router.post('/', async (req, res) =>
 		ver2: req.body.ver2,
 		ver3: req.body.ver3,
 		ver4: req.body.ver4,
+		fixVer1: req.body.fixVer1,
+		fixVer2: req.body.fixVer2,
+		fixVer3: req.body.fixVer3,
+		fixVer4: req.body.fixVer4,
 		bugDiscrip: req.body.bugDiscrip,
 		});
 	try

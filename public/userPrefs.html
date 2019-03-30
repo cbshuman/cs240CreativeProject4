@@ -84,6 +84,12 @@
 					</div>
 				</div>
 
+				<div class = "bugInfo"><button type="submit" type="button">Save Changes</button></div>
+				</form>
+				<div></div>
+				<div class = "bugInfo"><p v-if="errorA" class="errorA">{{errorA}}</p></div>
+				<div></div>
+
 				<div class = "bugInfo">
 				<h4>User Data:</h4>
 				<hr>
@@ -108,39 +114,39 @@
 				<div class = "bugInfo">
 				<h4>Change Password:</h4>
 				<hr>
+				<form @submit.prevent="UpdatePassword()">
 					<div class = "bugForm">
 
 						<div class = "bugFormInput">
 							Current Password:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="Current Password" type="password">
+							<input placeholder="Current Password" type="password" v-model="oldPassword">
 						</div>
 						<div class = "bugFormInput">
 							New Password:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="New Password" type="password">
+							<input placeholder="New Password" type="password" v-model="newPassword">
 						</div>
 						<div class = "bugFormInput">
 							Confirm New Password:
 						</div>
 						<div class = "bugFormInput">
-							<input placeholder="New Password" type="password">
+							<input placeholder="New Password" type="password" v-model="newPasswordRepeat">
 						</div>
 						<div class = "bugFormInput">
 							Confirm Change Password:
 						</div>
 						<div class = "bugFormInputA">
-							<button>Change Password</button>
+							<button type="submit" type="button">Change Password</button> <p v-if="errorB" class="errorB">{{errorB}}</p>
 						</div>
 				
 					</div>
 				</div>
 
 			</div>
-		<button type="submit" type="button">Save Changes</button>
-		</form>
+
 	</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>

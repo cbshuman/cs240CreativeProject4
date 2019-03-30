@@ -8,6 +8,7 @@ var app = new Vue(
 		projects: [],
 		bug: new bug(),
 		user: '',
+		error: '',
 		},
 	created()
 		{
@@ -47,26 +48,40 @@ var app = new Vue(
 			catch (error)
 				{
 				console.log(error);
+				this.error = "Error: " + error.response.data.message;
 				}
 			},
 		async UpdateBug()
 			{
-			let response = await axios.put("/api/bugs/" + this.bugID,
+			try
 				{
-				bugNickname: this.bug.bugNickname,
-				emailReport: this.bug.emailReport,
-				emailPrimary: this.bug.emailPrimary,
-				emailSecondary: this.bug.emailSecondary,
-				emailQA: this.bug.emailQA,
-				status: this.bug.status,
-				priority : this.bug.priority,
-				project: this.bug.project,
-				ver1: this.bug.ver1,
-				ver2: this.bug.ver2,
-				ver3: this.bug.ver3,
-				ver4: this.bug.ver4,
-				bugDiscrip: this.bug.discription,
-				});
+				let response = await axios.put("/api/bugs/" + this.bugID,
+					{
+					bugNickname: this.bug.bugNickname,
+					emailReport: this.bug.emailReport,
+					emailPrimary: this.bug.emailPrimary,
+					emailSecondary: this.bug.emailSecondary,
+					emailQA: this.bug.emailQA,
+					status: this.bug.status,
+					priority : this.bug.priority,
+					project: this.bug.project,
+					ver1: this.bug.ver1,
+					ver2: this.bug.ver2,
+					ver3: this.bug.ver3,
+					ver4: this.bug.ver4,
+					fixVer1: this.bug.fixVer1,
+					fixVer2: this.bug.fixVer2,
+					fixVer3: this.bug.fixVer3,
+					fixVer4: this.bug.fixVer4,
+					bugDiscrip: this.bug.discription,
+					});
+				this.error = 'Bug updated successfully!';
+				}
+			catch (error)
+				{
+				console.log(error);
+				this.error = "Error: " + error.response.data.message;
+				}
 			},
 		async SendComment()
 			{
@@ -102,6 +117,10 @@ var app = new Vue(
 				this.bug.ver2 = responseData.ver2;
 				this.bug.ver3 = responseData.ver3;
 				this.bug.ver4 = responseData.ver4;
+				this.bug.fixVer1 = responseData.fixVer1;
+				this.bug.fixVer2 = responseData.fixVer2;
+				this.bug.fixVer3 = responseData.fixVer3;
+				this.bug.fixVer4 = responseData.fixVer4;
 				this.bug.discription = responseData.bugDiscrip;
 				this.bug.comments = responseData.comments;
 				return true;
@@ -109,6 +128,7 @@ var app = new Vue(
 			catch (error)
 				{
 				console.log(error);
+				this.error = "Error: " + error.response.data.message;
 				}
 			},
 		}

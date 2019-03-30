@@ -15,7 +15,10 @@ let bug = function()
 	this.ver2 = "";
 	this.ver3 = "";
 	this.ver4 = "";
-	this.ver5 = "";
+	this.fixVer1 = "";
+	this.fixVer2 = "";
+	this.fixVer3 = "";
+	this.fixVer4 = "";
 	this.discription = "";
 	this.comments = "";
 	}

@@ -76,10 +76,10 @@ userSchema.methods.toJSON = function()
 const User = mongoose.model('User', userSchema);
 
 // create a new user
-router.post('/', async (req, res) =>
+router.post('/', auth.verifyToken, async (req, res) =>
 	{
 	//console.log("Creating user: " + req.body.username);
-	if (!req.body.username || !req.body.password || !req.body.lastName || !req.body.password)
+	if (!req.body.username || !req.body.password  || !req.body.lastName || !req.body.firstName)
 		{
 		return res.status(400).send({message: "username, real name(first and last), and password are required"});
 		}
@@ -120,42 +120,6 @@ router.post('/', async (req, res) =>
 		}
 	});
 
-router.put('/update/:id', async (req, res) =>
-	{
-	//console.log("Creating user: " + req.body.username);
-	if (!req.body.username || !req.body.lastName)
-		{
-		return res.status(400).send({message: "username, real name(first and last), and password are required"});
-		}
-
-	try
-		{
-		//  check to see if username already exists
-		let user = await User.findOne({ username: req.body.username });
-		
-	if (!user)
-			{
-			return res.status(403).send({message: "Can't find user"});
-			}
-
-		user.username = req.body.username;
-		user.firstName = req.body.firstName;
-		user.lastName = req.body.lastName;
-		user.alias = req.body.alias;
-		user.address = req.body.address;
-		user.phone = req.body.phone;
-		user.secondaryEmail = req.body.secondaryEmail;
-
-		await user.save();
-		return res.send(user);
-		} 
-	catch (error)
-		{
-		console.log(error);
-		return res.sendStatus(500);
-		}
-	});
-
 // login
 router.post('/login', async (req, res) =>
 	{
@@ -184,6 +148,76 @@ router.post('/login', async (req, res) =>
 		return res.sendStatus(500);
 		}
 	});
+
+//Update profile information
+router.put('/update/:id', auth.verifyToken, async (req, res) =>
+	{
+	//console.log("Updating user: " + req.body.username + "/" + req.body.id);
+	if (!req.body.username || !req.body.lastName || !req.body.firstName)
+		{
+		return res.status(400).send({message: "Username, real name(First and last), and password are required"});
+		}
+
+	try
+		{
+		//search for user
+		let user = await User.findOne({ _id: req.body.id });
+		
+		if (!user)
+			{
+			return res.status(403).send({message: "Can't find user"});
+			}
+
+		//console.log("updating: " + user.username);
+		user.username = req.body.username;
+		user.firstName = req.body.firstName;
+		user.lastName = req.body.lastName;
+		user.alias = req.body.alias;
+		user.address = req.body.address;
+		user.phone = req.body.phone;
+		user.secondaryEmail = req.body.secondaryEmail;
+
+		await user.save();
+		return res.send(user);
+		} 
+	catch (error)
+		{
+		console.log(error);
+		return res.sendStatus(500);
+		}
+	});
+
+//Change Password
+router.put('/update/password/:id', auth.verifyToken, async (req, res) =>
+	{
+	try
+		{
+		const user = await User.findOne({ _id: req.body.id });
+		//console.log("Updating Password for: " + user.username + "-" + req.body.oldPassword);
+
+		if (!await user.comparePassword(req.body.oldPassword))
+			{
+			//console.log(" - wrong password")
+			return res.status(403).send({ message: "Username or Password is wrong"});
+			}
+		if(req.body.newPassword !== req.body.newPasswordRepeat)
+			{
+			//console.log(" - new passwords do not match")
+			return res.status(403).send({ message: "Passwords do not match"});
+			}
+
+		user.password = req.body.newPassword;
+
+		await user.save();
+		return res.send(user)
+		}
+	catch (error)
+		{
+		console.log(error);
+		return res.sendStatus(500);
+		}
+	});
+
 
 // Get current user if logged in.
 router.get('/', auth.verifyToken, async (req, res) =>
@@ -214,6 +248,7 @@ router.delete("/", auth.verifyToken, async (req, res) =>
 	res.sendStatus(200);
 	});
 
+//Login function
 async function login(user, res) 
 	{
 	let token = auth.generateToken({id: user._id}, "24h");
