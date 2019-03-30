@@ -41,7 +41,7 @@ var app = new Vue(
 			{
 			try
 				{
-				let response = await axios.get("http://localhost:3000/api/projects");
+				let response = await axios.get("/api/projects");
 				this.projects = response.data;
 				return true;
 				}

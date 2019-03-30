@@ -141,7 +141,7 @@ var app = new Vue(
 			{
 			try
 				{
-				let response = await axios.get("http://localhost:3000/api/projects");
+				let response = await axios.get("/api/projects");
 				this.projects = response.data;
 				return true;
 				}
@@ -154,7 +154,7 @@ var app = new Vue(
 			{
 			try
 				{
-				let response = await axios.get("http://localhost:3000/api/bugs");
+				let response = await axios.get("/api/bugs");
 				this.bugs = response.data;
 				this.SortBugs();
 				return true;
@@ -170,7 +170,7 @@ var app = new Vue(
 				{
 				try
 					{
-					let response = await axios.post("http://localhost:3000/api/bugs",
+					let response = await axios.post("/api/bugs",
 						{
 						bugNickname: this.newbug.bugNickname,
 						emailReport: this.newbug.emailReport,

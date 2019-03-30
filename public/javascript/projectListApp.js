@@ -51,7 +51,7 @@ var app = new Vue(
 				{
 				try
 					{
-					let response = await axios.post("http://localhost:3000/api/projects", { projectName: this.newProjectname, projectDisc: this.newProjectDisc});
+					let response = await axios.post("/api/projects", { projectName: this.newProjectname, projectDisc: this.newProjectDisc});
 					this.GetProjects();
 					this.ToggleForm();
 					return true;

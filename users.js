@@ -254,10 +254,10 @@ router.delete("/:id/:password/:repeatPassword/:removalusername", auth.verifyToke
 	//Check that the passwords match
 	if(req.params.password != req.params.repeatPassword)
 		{
-		console.log("passwd no matchy: A:" + req.params.password + "/ B:" +  req.params.repeatPassword);
+		//console.log("passwd no matchy: A:" + req.params.password + "/ B:" +  req.params.repeatPassword);
 		return res.status(403).send({error: "Your password does not match!"});
 		}
-	console.log("AdminID: " +  req.params.id);
+	//console.log("AdminID: " +  req.params.id);
 
 	const user = await User.findOne({_id:  req.params.id});
 
@@ -269,12 +269,12 @@ router.delete("/:id/:password/:repeatPassword/:removalusername", auth.verifyToke
 
 	if (!await user.comparePassword(req.params.password))
 		{
-		console.log(" - wrong password, is not: " + req.params.password)
+		//console.log(" - wrong password, is not: " + req.params.password)
 		return res.status(403).send({ message: "Username or Password is wrong"});
 		}
 	try
 		{
-		console.log("Deleting: " + req.params.removalusername );
+		//console.log("Deleting: " + req.params.removalusername );
 		await User.deleteOne({ username : req.params.removalusername });
 		return res.sendStatus(200);
 		}
