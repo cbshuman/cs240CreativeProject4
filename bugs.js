@@ -165,6 +165,7 @@ router.put('/comment/:id', auth.verifyToken, async (req, res) =>
 	});
 
 
+//Create new bug
 router.post('/', auth.verifyToken, async (req, res) =>
 	{
 	//console.log("Version" + req.body.ver1 + "." + req.body.ver2);
@@ -184,10 +185,10 @@ router.post('/', auth.verifyToken, async (req, res) =>
 		ver2: req.body.ver2,
 		ver3: req.body.ver3,
 		ver4: req.body.ver4,
-		fixVer1: req.body.fixVer1,
-		fixVer2: req.body.fixVer2,
-		fixVer3: req.body.fixVer3,
-		fixVer4: req.body.fixVer4,
+		fixVer1: req.body.ver1,
+		fixVer2: req.body.ver2,
+		fixVer3: req.body.ver3,
+		fixVer4: req.body.ver4,
 		bugDiscrip: req.body.bugDiscrip,
 		});
 	try

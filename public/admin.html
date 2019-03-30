@@ -64,31 +64,34 @@
 			</form>
 
 				<div class = "bugInfo">
-					<h4>Remove User</h4>
-					<hr>
-					<div class = "bugForm">
-						<div class = "bugFormInput">
-							Email/Username:
+					<form  @submit.prevent="DeleteUser()">
+						<h4>Remove User</h4>
+						<hr>
+						<div class = "bugForm">
+
+							<div class = "bugFormInput">
+								Email/Username:
+							</div>
+							<div class = "bugFormInput">
+								<input placeholder="Email Address" v-model="deleteUsername">
+							</div>
+							<div class = "bugFormInput">
+								Admin Password:
+							</div>
+							<div class = "bugFormInput">
+								<input placeholder="Admin Password" v-model="deletePassword">
+							</div>
+							<div class = "bugFormInput">
+								Confirm Admin Password:
+							</div>
+							<div class = "bugFormInput">
+								<input placeholder="Admin Password" v-model="deletePasswordrept">
+							</div>
+							<div class = "bugFormInput">
+								<button type="submit" type="button">Remove</button>
+							</div>
 						</div>
-						<div class = "bugFormInput">
-							<input placeholder="Email Address">
-						</div>
-						<div class = "bugFormInput">
-							Admin Password:
-						</div>
-						<div class = "bugFormInput">
-							<input placeholder="Phone Number">
-						</div>
-						<div class = "bugFormInput">
-							Confirm Admin Password:
-						</div>
-						<div class = "bugFormInput">
-							<input placeholder="Secondary email">
-						</div>
-						<div class = "bugFormInput">
-							<button>Remove</button>
-						</div>
-					</div>
+					</form>
 				</div>
 
 				<div class = "bugInfo">
